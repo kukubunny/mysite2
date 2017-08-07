@@ -1,0 +1,68 @@
+{% extends 'blog/../account/base.html' %}
+
+{% block content %}
+
+    <div class="post panel panel-default">
+        <div class="panel-body" style="padding:35px;">
+
+            <div class="post">
+
+                <p style="text-align: right;">
+
+                    {% if user.is_authenticated %}  <!-- 브라우저에 페이지를 요청 하는 사용자가 로그인 하는 경우 링크가 발생됩니다. -->
+
+                        <a class="btn btn-default" href="{% url 'blog:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+                    {% endif %}
+
+                        <a class="btn btn-default" href="{% url 'blog:post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+
+                </p>
+
+                <p style="text-align: left;">
+
+                    {% if post.published_date %}    <!-- post의 게시일(published_date)이 있는지, 없는지를 확인 -->
+
+                        {{ post.published_date }}
+
+                    {% else %}
+
+                        <a class="btn btn-default" href="{% url 'blog:post_publish' pk=post.pk %}">Publish</a>
+
+                    {% endif %}
+
+                </p>
+
+                <h1>{{ post.title }}</h1>
+
+                <br>
+
+                <p>{{ post.text|linebreaksbr }}</p>
+
+            </div>
+
+            <hr>
+            <a class="btn btn-default" href="{% url 'blog:add_comment_to_post' pk=post.pk %}">Add comment</a>
+
+            {% for comment in post.comments.all %}
+                {% if user.is_authenticated or comment.approved_comment %}
+                <div class="comment">
+                    <div class="date">
+                        {{ comment.created_date }}
+                        {% if not comment.approved_comment %}
+                            <a class="btn btn-default" href="{% url 'blog:comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a class="btn btn-default" href="{% url 'blog:comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                        {% endif %}
+                    </div>
+                    <strong>{{ comment.author }}</strong>
+                    <p>{{ comment.text|linebreaks }}</p><hr>
+                </div>
+                {% endif %}
+            {% empty %}
+                <p>No comments here yet :(</p>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

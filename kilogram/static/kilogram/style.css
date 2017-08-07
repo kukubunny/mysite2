@@ -1,0 +1,16 @@
+a {
+    color: green;
+    text-decoration: none;
+}
+
+.errorlist {
+    color: red;
+}
+
+.round {
+    border-radius: 50%;
+}
+
+.socialaccount_provider facebook{
+    color:red;
+}

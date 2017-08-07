@@ -1,0 +1,81 @@
+body {
+    background: #fafafa;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+
+.post {
+    margin-bottom: 50px;
+}
+
+.post a, .post a:visited, h1, h2, h3, h4 {
+    color: #000000;
+}
+
+.post-form {
+    margin-top: 20px;
+}
+
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+
+.post-form input {
+    padding: 7px 10px;
+    margin-bottom: 20px;
+}
+
+.post-form textarea {
+    padding: 7px 10px;
+    margin-bottom: 20px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Lobster', cursive;
+}
+
+.js_container {
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.js_post_text {
+    margin-top: 20px;
+    max-height: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.js_post_text a, .js_post_text a:hover {
+    text-decoration: none;
+    color: #444444;
+    font-size: 0.9em;
+}
+
+.js_post_detail {
+    border-top: 1px solid #d0e9c6;
+    padding-top: 10px;
+}
+
+.comment {
+    margin-top: 30px;
+}
+
+.js_ul-li {
+    padding-left: 0;
+    list-style: none;
+}
+
+.js_ul-li-left {
+    float: left;
+}
+
+.js_ul-li-right {
+    float: right;
+}

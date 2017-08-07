@@ -1,0 +1,58 @@
+{% extends 'account/base.html' %}
+{% block content %}
+
+    <p> <a class="btn btn-primary" href="{% url 'kilogram:upload'%}">업로드</a></p>    <!-- upload Button -->
+
+    {% if user_photo_list %}
+
+    {% for photo in user_photo_list %}
+
+        <div class="panel panel-default" align="center">
+
+            <div class="panel-heading">
+                <h4>{{photo.owner.username}}</h4>
+            </div>  <!-- photo.owner.username : 유저이름 표시 -->
+
+            <div class="panel-body">
+                <p style="width: 600px; margin: 0 auto; text-align:left;">
+                    <img src = '{{photo.image.url}}' width='600' />
+                    <br><br>
+                    <a href="{% url 'kilogram:profile' user.pk %}"><b style="color: #333333;">{{photo.owner.username}}</b></a> {{photo.comment}}
+                    <br><br>
+                </p>
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+    {% else %}
+
+        <h4>아직 사진이 없네요. 첫번째 사진을 업로드하세요!</h4>
+
+    {% endif %}
+
+    <!-- pagenation nav -->
+    {% if is_paginated %}
+
+        <nav aria-label="...">
+            <ul class="pager">
+
+                {% if page_obj.has_previous %}
+                    <li><a href="{%url 'kilogram:index'%}?page={{ page_obj.previous_page_number }}">이전</a></li>
+                {% endif %}
+
+                <li> <a href="#">페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }} </a></li>
+
+                {% if page_obj.has_next %}
+                    <li>
+                        <a href="{%url 'kilogram:index'%}?page={{ page_obj.next_page_number }}">다음</a>
+                    </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+
+    {% endif %}
+
+{% endblock %}
